@@ -1,5 +1,5 @@
 // import cors from 'cors'
-const socket = require('socket.io')(80, {origins: "foo.bar:80"});
+const socket = require('socket.io')();
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
