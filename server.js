@@ -10,7 +10,7 @@ http.listen(process.env.PORT || 6996, function() {
 
 const io = require("socket.io")(http,{
     cors: {
-        origin: ["http://localhost", "http://192.168.1.25", "http://ipdncms.test", "https://ipdncms.xyrus10.com", "http://ipdncms.xyrus10.com"],
+        origin: ["http://localhost", "http://192.168.1.25", "http://ipdncms.test", "https://ipdncms.xyrus10.com", "http://ipdncms.xyrus10.com", "https://ipdn-socket.herokuapp.com"],
         methods: ["GET", "POST"],
         allowedHeaders: ["my-custom-header"],
         credentials: true
