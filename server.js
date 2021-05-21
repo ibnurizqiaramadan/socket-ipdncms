@@ -18,7 +18,7 @@ const io = require("socket.io")(http, {
       "http://ipdncms.xyrus10.com", 
       "https://ipdn-socket.herokuapp.com",
       "http://chatapp.test",
-      "https://chatapp.xyrus10.com/"
+      "https://chatapp.xyrus10.com"
     ],
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
