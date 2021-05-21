@@ -24,19 +24,34 @@ const io = require("socket.io")(http, {
     credentials: true
   }
 });
+
+var clients = []
+
 io.on("connection", socket => {
 
   socket.on("join", param => {
     console.log("user join")
+    // clients.push(socket.client.id)
+    // console.log(clients)
   })
 
   socket.on("affectDataTable", param => {
     console.log("Affected DataTable")
     console.log(param)
     io.emit("refreshDataTable", param)
-  });
+  })
+
+  socket.on("sendMessage", param => {
+    console.log("Message Send")
+    console.log(param)
+    io.emit("getMessage", param)
+  })
 
   socket.on("disconnect", (reason) => {
     console.log("user leave")
-  });
-});
+    // console.log(reason)
+    // var i = clients.indexOf(socket.client.id);
+    // clients.splice(i, 1);
+    // console.log(clients)
+  })
+})
