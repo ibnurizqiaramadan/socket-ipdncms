@@ -1,19 +1,24 @@
-// import cors from 'cors'
-const socket = require('socket.io')();
-const express = require('express');
-const app = express();
-const server = require('http').createServer(app);
-const io = socket.listen(server);
-const port = process.env.PORT || 3000;
-
-// app.use(cors())
-
-server.listen(port, function () {
-	console.log('Server listening at port %d', port);
+const io = require("socket.io")(6996,{
+    cors: {
+        origin: ["http://localhost", "http://192.168.1.25", "http://ipdncms.test", "https://ipdncms.xyrus10.com", "http://ipdncms.xyrus10.com"],
+        methods: ["GET", "POST"],
+        allowedHeaders: ["my-custom-header"],
+        credentials: true
+    }
 });
+io.on("connection", socket => {
 
-io.on('connection', function (socket) {
-	socket.on("join", param => {
-		console.log("user join")
-	})
+    socket.on("join", param => {
+        console.log("user join")
+    })
+
+    socket.on("affectDataTable", param => {
+		console.log("Affected DataTable")
+        console.log(param)
+		io.emit("refreshDataTable", param)
+    });
+
+    socket.on("disconnect", (reason) => {
+		console.log("user leave")
+	});	
 });
